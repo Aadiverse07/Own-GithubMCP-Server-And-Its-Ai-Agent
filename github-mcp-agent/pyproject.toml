@@ -1,0 +1,50 @@
+[project]
+name = "github-mcp-agent"
+version = "0.1.0"
+description = "GitHub MCP server and AI agent: how tool descriptions affect LLM tool selection"
+authors = [
+    { name = "AadiEvoulution07", email = "338514003+AadiEvoulution07@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "mcp==2.3.0",
+    "pygithub==2.10.0",
+    "pydantic==2.13.5",
+    "pydantic-settings==2.15.0",
+    "python-dotenv==1.2.4",
+]
+
+[project.scripts]
+ghmcp-server = "ghmcp.server.main:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "ghmcp"
+
+[dependency-groups]
+dev = [
+    "anyio==4.15.1",
+    "pre-commit==4.6.2",
+    "pytest==9.1.1",
+    "pytest-timeout==2.4.0",
+    "ruff==0.16.10",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "T20", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["T20", "S101", "S105", "S106", "S603", "S607"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit", "tests/integration"]
+addopts = "-ra --strict-markers"
+markers = ["live: needs the real throwaway GitHub account; run only with --run-live"]

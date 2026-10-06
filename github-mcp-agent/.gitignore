@@ -1,0 +1,29 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# runtime output
+logs/
+src/ghmcp/evaluation/results/
+*.log
+
+# python / tooling caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+dist/
+*.egg-info/
+
+# node (MCP Inspector via npx)
+node_modules/
+
+# macOS / editors
+.DS_Store
+.idea/
+.vscode/
